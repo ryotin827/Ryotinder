@@ -105,6 +105,7 @@ const profiles = Array.from({ length: 93 }, (_, i) => ({
 ][i]
 }));
 
+
 // 配列をランダムに並び替える関数
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
