@@ -101,7 +101,6 @@ const profiles = [
     { photo: "images/photo92-min.JPEG", description: "よろしくお願いします。お手柔らかに。" },
     { photo: "images/photo93-min.JPEG", description: "真摯に野球と向き合ってます。" },
 ];
-
 // プロフィールをシャッフル
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -119,6 +118,7 @@ function shuffleArray(array) {
       photoElement.src = profiles[currentIndex].photo;
       descriptionElement.textContent = profiles[currentIndex].comment;
       matchMessage.classList.remove("active", "fixed"); // マッチをリセット
+      matchMessage.style.opacity = 0; // マッチを非表示に
     } else {
       console.error(`プロフィールが見つかりません: ${currentIndex}`);
     }
@@ -130,6 +130,7 @@ function shuffleArray(array) {
     if (isMatch) {
       matchMessage.style.transition = "none"; // トランジションを一時的に無効化
       matchMessage.classList.add("active");
+      matchMessage.style.opacity = 1; // 表示させる
       requestAnimationFrame(() => {
         matchMessage.style.transition = "transform 0.5s ease, opacity 0.5s ease";
         setTimeout(() => {
