@@ -90,7 +90,6 @@ button:active {
 }
 
 #match-message.fixed {
-    top: 50%; /* 写真中央 */
-    transform: translate(-50%, -50%) scale(0.8); /* 小さく固定 */
+    transform: translate(-50%, -50%) scale(1); /* サイズを調整 */
     opacity: 1;
 }

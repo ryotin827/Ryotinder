@@ -108,13 +108,21 @@ const descriptions = [
 // 現在の画像インデックス
 let currentIndex = 0;
 
+// スマホや画面サイズに応じた「マッチ」の位置を調整
+function adjustMatchPosition() {
+    const photoRect = photoElement.getBoundingClientRect();
+    const matchMessageHeight = matchMessage.offsetHeight;
+    const topPosition = photoRect.top + photoRect.height / 2 - matchMessageHeight / 2;
+    matchMessage.style.top = `${topPosition}px`;
+}
+
 // プロフィールを更新する関数
 function updateProfile() {
     if (photos[currentIndex]) {
         photoElement.src = photos[currentIndex];
         descriptionElement.textContent = descriptions[currentIndex];
-        matchMessage.classList.remove("active", "fixed"); // 「マッチ」を消す
-        matchMessage.style.opacity = "0"; // 表示をリセット
+        matchMessage.classList.remove("active", "fixed"); // 「マッチ」をリセット
+        matchMessage.style.opacity = "0"; // 消す
     } else {
         console.error(`画像が見つかりません: ${photos[currentIndex]}`);
     }
@@ -124,13 +132,10 @@ function updateProfile() {
 likeButton.addEventListener("click", () => {
     const isMatch = Math.random() < 0.5; // 50%の確率でマッチ！
     if (isMatch) {
-        matchMessage.style.transition = "none"; // トランジションを一時的に無効化
+        adjustMatchPosition(); // 「マッチ」の位置を再調整
         matchMessage.classList.add("active");
-        requestAnimationFrame(() => {
-            matchMessage.style.transition = "transform 0.5s ease, opacity 0.5s ease";
-            matchMessage.style.opacity = "1"; // マッチを表示
-            matchMessage.classList.add("fixed"); // 中央に固定
-        });
+        matchMessage.style.opacity = "1"; // 表示
+        matchMessage.style.position = "absolute"; // 固定
     }
     likeButton.style.backgroundColor = "#ff1493";
 });
