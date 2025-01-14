@@ -6,7 +6,6 @@ body {
     text-align: center;
     background-color: #ff69b4;
     color: white;
-    overflow-x: hidden; /* 横スクロールを防ぐ */
 }
 
 h1 {
@@ -18,29 +17,19 @@ h1 {
 /* 画像とテキスト */
 #photo-container {
     margin: 20px auto;
-    position: relative; /* 「マッチ」を写真に重ねるため */
-    max-width: 90%; /* スマホ画面に収まるよう調整 */
-    text-align: center;
+    position: relative; /* 写真に「マッチ」を重ねるため */
 }
 
 #profile-photo {
-    width: 100%; /* 幅を画面サイズに応じて調整 */
-    max-width: 300px; /* 最大幅を指定 */
-    height: auto; /* アスペクト比を維持 */
+    width: 300px;
+    height: 300px;
     border-radius: 15px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     object-fit: cover;
 }
 
-#profile-name {
-    margin-top: 10px;
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: white;
-}
-
 #profile-description {
-    margin-top: 5px;
+    margin-top: 15px;
     font-size: 1.2rem;
     color: #fff;
 }
@@ -59,20 +48,22 @@ button {
     align-items: center;
     justify-content: center;
     font-size: 4rem;
-    width: 80px; /* ボタンの幅を調整 */
-    height: 80px; /* ボタンの高さを調整 */
+    width: 160px;
+    height: 160px;
     border: none;
-    border-radius: 50px;
+    border-radius: 50px; /* 丸みを大きく */
     background-color: white;
     color: #000;
     cursor: pointer;
     transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
+/* ボタンホバー時 */
 button:hover {
     transform: scale(1.1);
 }
 
+/* ボタン押下時 */
 button:active {
     transform: scale(0.95);
 }
@@ -89,24 +80,24 @@ button:active {
 
 /* マッチ！の演出 */
 #match-message {
-    position: absolute;
-    top: 50%; /* 写真の中央に配置 */
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0);
+    position: absolute; /* 写真に重なる */
+    top: 50%; /* 写真の中央 */
+    left: 50%; /* 写真の中央 */
+    transform: translate(-50%, -50%) scale(0); /* 中央に配置して縮小 */
     font-size: 5rem;
     font-weight: bold;
-    color: #ff3e96; /* 赤色 */
-    text-shadow: 0px 6px 15px rgba(0, 0, 0, 0.5); /* 濃い影で強調 */
-    background: rgba(255, 255, 255, 0.8); /* 背景の透明度を調整 */
-    padding: 20px 40px; /* 余白を調整 */
-    border-radius: 30px;
-    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    color: #ff0000; /* 赤色 */
+    text-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3); /* テキストの影 */
+    background: rgba(255, 255, 255, 0.6); /* 背景の透明度を調整 */
+    padding: 15px 30px;
+    border-radius: 10px;
+    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
     opacity: 0;
-    z-index: 2;
+    z-index: 2; /* 他の要素より前面に表示 */
 }
 
 #match-message.active {
-    transform: translate(-50%, -50%) scale(1.2); /* 大きく表示 */
+    transform: translate(-50%, -50%) scale(3); /* 大きく表示 */
     opacity: 1;
 }
 
