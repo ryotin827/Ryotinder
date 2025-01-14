@@ -135,8 +135,9 @@ likeButton.addEventListener("click", () => {
     const isMatch = Math.random() < 0.5; // 50%の確率でマッチ！
     if (isMatch) {
         matchMessage.style.opacity = 1; // 「マッチ」を表示
+        matchMessage.style.transform = "translate(-50%, -50%) scale(1)";
         setTimeout(() => {
-            matchMessage.style.opacity = 0; // 3秒後に消える
+            matchMessage.style.opacity = 0; // 数秒後に消える
         }, 3000);
     }
     likeButton.style.backgroundColor = "#ff1493"; // ボタンをピンクに変更

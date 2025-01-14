@@ -83,8 +83,8 @@ button:active {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 4rem;
+    transform: translate(-50%, -50%) scale(0);
+    font-size: 5rem;
     font-weight: 900;
     color: red;
     text-shadow: 0px 6px 15px rgba(0, 0, 0, 0.5);
