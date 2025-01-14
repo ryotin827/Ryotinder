@@ -102,58 +102,54 @@ const profiles = [
     { photo: "images/photo93-min.JPEG", description: "真摯に野球と向き合ってます。" },
 ];
 
-// 配列をシャッフルする関数
+// プロフィールをシャッフル
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]];
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
     }
-}
-
-// プロフィール配列をランダムに並び替え
-shuffleArray(profiles);
-
-// 現在のプロフィールインデックス
-let currentIndex = 0;
-
-// プロフィールを更新する関数
-function updateProfile() {
+  }
+  shuffleArray(profiles); // シャッフルを実行
+  
+  let currentIndex = 0; // 現在のプロフィールインデックス
+  
+  // プロフィールを更新する関数
+  function updateProfile() {
     if (profiles[currentIndex]) {
-        const { photo, description } = profiles[currentIndex];
-        photoElement.src = photo;
-        descriptionElement.textContent = description;
-        matchMessage.classList.remove("active", "fixed");
+      photoElement.src = profiles[currentIndex].photo;
+      descriptionElement.textContent = profiles[currentIndex].comment;
+      matchMessage.classList.remove("active", "fixed"); // マッチをリセット
     } else {
-        console.error(`プロフィールが見つかりません: ${profiles[currentIndex]}`);
+      console.error(`プロフィールが見つかりません: ${currentIndex}`);
     }
-}
-
-// ボタンのクリックイベント設定
-likeButton.addEventListener("click", () => {
+  }
+  
+  // ボタンのクリックイベント設定
+  likeButton.addEventListener("click", () => {
     const isMatch = Math.random() < 0.5; // 50%の確率でマッチ！
     if (isMatch) {
-        matchMessage.style.transition = "none"; // トランジションを一時的に無効化
-        matchMessage.classList.add("active");
-        requestAnimationFrame(() => {
-            matchMessage.style.transition = "transform 0.5s ease, opacity 0.5s ease";
-            setTimeout(() => {
-                matchMessage.classList.remove("active"); // 大きい表示を解除
-                matchMessage.classList.add("fixed"); // 小さく写真中央上部に移動
-            }, 1500);
-        });
+      matchMessage.style.transition = "none"; // トランジションを一時的に無効化
+      matchMessage.classList.add("active");
+      requestAnimationFrame(() => {
+        matchMessage.style.transition = "transform 0.5s ease, opacity 0.5s ease";
+        setTimeout(() => {
+          matchMessage.classList.remove("active"); // 大きい表示を解除
+          matchMessage.classList.add("fixed"); // 小さく写真中央上部に移動
+        }, 1500); // 1.5秒後に次のアニメーションへ
+      });
     }
     likeButton.style.backgroundColor = "#ff1493";
     currentIndex = (currentIndex + 1) % profiles.length;
     updateProfile();
     setTimeout(() => {
-        likeButton.style.backgroundColor = "white";
+      likeButton.style.backgroundColor = "white";
     }, 100);
-});
-
-skipButton.addEventListener("click", () => {
+  });
+  
+  skipButton.addEventListener("click", () => {
     currentIndex = (currentIndex + 1) % profiles.length;
     updateProfile();
-});
-
-// 初期化
-updateProfile();
+  });
+  
+  // 初期化
+  updateProfile();
