@@ -125,6 +125,7 @@ function updateProfile() {
         photoElement.src = profiles[currentIndex].photo;
         descriptionElement.textContent = profiles[currentIndex].description;
         matchMessage.style.opacity = 0; // 「マッチ」を非表示
+        matchMessage.style.transform = "translate(-50%, -50%) scale(0)"; // 初期状態に戻す
     } else {
         console.error(`画像が見つかりません: ${profiles[currentIndex]}`);
     }
@@ -138,6 +139,7 @@ likeButton.addEventListener("click", () => {
         matchMessage.style.transform = "translate(-50%, -50%) scale(1)";
         setTimeout(() => {
             matchMessage.style.opacity = 0; // 数秒後に消える
+            matchMessage.style.transform = "translate(-50%, -50%) scale(0)";
         }, 3000);
     }
     likeButton.style.backgroundColor = "#ff1493"; // ボタンをピンクに変更
