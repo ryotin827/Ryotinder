@@ -17,7 +17,7 @@ h1 {
 /* 画像とテキスト */
 #photo-container {
     margin: 20px auto;
-    position: relative; /* 写真に「マッチ」を重ねるため */
+    position: relative; /* 「マッチ」を写真に重ねるため */
 }
 
 #profile-photo {
@@ -80,28 +80,22 @@ button:active {
 
 /* マッチ！の演出 */
 #match-message {
-    position: absolute; /* 写真に重なる */
-    top: 50%; /* 写真の中央 */
-    left: 50%; /* 写真の中央 */
-    transform: translate(-50%, -50%) scale(0); /* 中央に配置して縮小 */
-    font-size: 5rem;
+    position: absolute;
+    top: 50%; /* 写真中央に表示 */
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    font-size: 4rem; /* サイズを調整 */
     font-weight: bold;
-    color: #ff0000; /* 赤色 */
-    text-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3); /* テキストの影 */
-    background: rgba(255, 255, 255, 0.6); /* 背景の透明度を調整 */
-    padding: 15px 30px;
-    border-radius: 10px;
-    transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+    color: #ff0000; /* 赤色に設定 */
+    text-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3); /* 影を追加 */
+    padding: 15px;
+    border-radius: 5px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
     opacity: 0;
-    z-index: 2; /* 他の要素より前面に表示 */
 }
 
 #match-message.active {
-    transform: translate(-50%, -50%) scale(3); /* 大きく表示 */
+    transform: translate(-50%, -50%) scale(3); /* 画面いっぱいに表示 */
     opacity: 1;
 }
 
-#match-message.fixed {
-    transform: translate(-50%, -150%) scale(0.8); /* 小さくなり写真中央上部に移動 */
-    opacity: 1;
-}
