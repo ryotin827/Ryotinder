@@ -1,0 +1,116 @@
+/* 全体のスタイル */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    background-color: #ff69b4;
+    color: white;
+    overflow-x: hidden; /* 横スクロールを防ぐ */
+}
+
+h1 {
+    font-size: 3rem;
+    margin: 20px 0;
+    color: #fff;
+}
+
+/* 画像とテキスト */
+#photo-container {
+    margin: 20px auto;
+    position: relative; /* 「マッチ」を写真に重ねるため */
+    max-width: 90%; /* スマホ画面に収まるよう調整 */
+    text-align: center;
+}
+
+#profile-photo {
+    width: 100%; /* 幅を画面サイズに応じて調整 */
+    max-width: 300px; /* 最大幅を指定 */
+    height: auto; /* アスペクト比を維持 */
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    object-fit: cover;
+}
+
+#profile-name {
+    margin-top: 10px;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+}
+
+#profile-description {
+    margin-top: 5px;
+    font-size: 1.2rem;
+    color: #fff;
+}
+
+/* ボタン全体のスタイル */
+#buttons {
+    display: flex; /* 横並びに配置 */
+    justify-content: center; /* ボタンを中央揃え */
+    gap: 20px; /* ボタン同士の間隔を調整 */
+    margin-top: 20px;
+}
+
+/* 共通のボタンスタイル */
+button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    width: 80px; /* ボタンの幅を調整 */
+    height: 80px; /* ボタンの高さを調整 */
+    border: none;
+    border-radius: 50px;
+    background-color: white;
+    color: #000;
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+button:hover {
+    transform: scale(1.1);
+}
+
+button:active {
+    transform: scale(0.95);
+}
+
+/* 左側のボタン（😩） */
+#skip-btn {
+    background-color: #dff7ff; /* 薄い水色 */
+}
+
+/* 右側のボタン（😘） */
+#like-btn {
+    background-color: #ffe4e6; /* 薄いピンク */
+}
+
+/* マッチ！の演出 */
+#match-message {
+    position: absolute;
+    top: 50%; /* 写真の中央に配置 */
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    font-size: 5rem;
+    font-weight: bold;
+    color: #ff3e96; /* 赤色 */
+    text-shadow: 0px 6px 15px rgba(0, 0, 0, 0.5); /* 濃い影で強調 */
+    background: rgba(255, 255, 255, 0.8); /* 背景の透明度を調整 */
+    padding: 20px 40px; /* 余白を調整 */
+    border-radius: 30px;
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+    opacity: 0;
+    z-index: 2;
+}
+
+#match-message.active {
+    transform: translate(-50%, -50%) scale(1.2); /* 大きく表示 */
+    opacity: 1;
+}
+
+#match-message.fixed {
+    transform: translate(-50%, -150%) scale(0.8); /* 小さくなり写真中央上部に移動 */
+    opacity: 1;
+}
