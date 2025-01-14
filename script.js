@@ -5,11 +5,10 @@ const matchMessage = document.getElementById("match-message");
 const likeButton = document.getElementById("like-btn");
 const skipButton = document.getElementById("skip-btn");
 
-// 画像ファイル名の配列
-const photos = Array.from({ length: 93 }, (_, i) => `images/photo${i + 1}-min.JPEG`);
-
-// コメントを配列に追加
-const descriptions = [
+// 画像ファイル名とコメントのペアを作成
+const profiles = Array.from({ length: 93 }, (_, i) => ({
+    photo: `images/photo${i + 1}-min.JPEG`,
+    description: [
     "目があった人を石にしたいです！",
     "最近はお歯黒にハマってます！",
     "スヌーピー好きな人と仲良くしたいです！",
@@ -103,19 +102,31 @@ const descriptions = [
     "流行りのマッシュヘアです！",
     "よろしくお願いします。お手柔らかに。",
     "真摯に野球と向き合ってます。"
-];
+][i]
+}));
+
+// 配列をランダムに並び替える関数
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+}
+
+// ランダムに並び替える
+shuffleArray(profiles);
 
 // 現在の画像インデックス
 let currentIndex = 0;
 
 // プロフィールを更新する関数
 function updateProfile() {
-    if (photos[currentIndex]) {
-        photoElement.src = photos[currentIndex];
-        descriptionElement.textContent = descriptions[currentIndex];
+    if (profiles[currentIndex]) {
+        photoElement.src = profiles[currentIndex].photo;
+        descriptionElement.textContent = profiles[currentIndex].description;
         matchMessage.style.opacity = 0; // 「マッチ」を非表示
     } else {
-        console.error(`画像が見つかりません: ${photos[currentIndex]}`);
+        console.error(`画像が見つかりません: ${profiles[currentIndex]}`);
     }
 }
 
@@ -133,12 +144,12 @@ likeButton.addEventListener("click", () => {
         likeButton.style.backgroundColor = "#ffe4e6"; // ピンクから元に戻す
     }, 500);
 
-    currentIndex = (currentIndex + 1) % photos.length;
+    currentIndex = (currentIndex + 1) % profiles.length;
     updateProfile();
 });
 
 skipButton.addEventListener("click", () => {
-    currentIndex = (currentIndex + 1) % photos.length;
+    currentIndex = (currentIndex + 1) % profiles.length;
     updateProfile();
 });
 
