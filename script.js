@@ -114,6 +114,7 @@ function updateProfile() {
         photoElement.src = photos[currentIndex];
         descriptionElement.textContent = descriptions[currentIndex];
         matchMessage.classList.remove("active", "fixed"); // 「マッチ」を消す
+        matchMessage.style.opacity = "0"; // 表示をリセット
     } else {
         console.error(`画像が見つかりません: ${photos[currentIndex]}`);
     }
@@ -127,18 +128,11 @@ likeButton.addEventListener("click", () => {
         matchMessage.classList.add("active");
         requestAnimationFrame(() => {
             matchMessage.style.transition = "transform 0.5s ease, opacity 0.5s ease";
-            setTimeout(() => {
-                matchMessage.classList.remove("active"); // 大きい表示を解除
-                matchMessage.classList.add("fixed"); // 小さく写真中央に移動
-            }, 3000); // 3秒間表示させる
+            matchMessage.style.opacity = "1"; // マッチを表示
+            matchMessage.classList.add("fixed"); // 中央に固定
         });
     }
     likeButton.style.backgroundColor = "#ff1493";
-    currentIndex = (currentIndex + 1) % photos.length;
-    updateProfile();
-    setTimeout(() => {
-        likeButton.style.backgroundColor = "white";
-    }, 100);
 });
 
 skipButton.addEventListener("click", () => {
