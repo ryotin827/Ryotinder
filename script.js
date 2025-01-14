@@ -5,7 +5,7 @@ const matchMessage = document.getElementById("match-message");
 const likeButton = document.getElementById("like-btn");
 const skipButton = document.getElementById("skip-btn");
 
-// 画像とコメントの配列を作成
+// 画像とコメントの配列
 const photos = Array.from({ length: 93 }, (_, i) => `images/photo${i + 1}-min.JPEG`);
 const descriptions = [
     "目があった人を石にしたいです！",
@@ -123,7 +123,7 @@ function updateProfile() {
     if (photos[currentIndex]) {
         photoElement.src = photos[currentIndex];
         descriptionElement.textContent = descriptions[currentIndex];
-        matchMessage.classList.remove("active", "fixed"); // 「マッチ」を非表示
+        matchMessage.classList.remove("active"); // 「マッチ」を非表示
     } else {
         console.error(`画像が見つかりません: ${photos[currentIndex]}`);
     }
@@ -135,15 +135,11 @@ likeButton.addEventListener("click", () => {
     if (isMatch) {
         matchMessage.classList.add("active");
         setTimeout(() => {
-            matchMessage.classList.add("fixed");
-        }, 1000); // 1秒後に「マッチ」を固定
+            matchMessage.classList.remove("active");
+        }, 2000); // 2秒後に非表示
     }
-    likeButton.style.backgroundColor = "#ff1493"; // ボタンをピンクにする
     currentIndex = (currentIndex + 1) % photos.length; // 次の写真に進む
     updateProfile();
-    setTimeout(() => {
-        likeButton.style.backgroundColor = "white"; // ボタンを元の色に戻す
-    }, 200);
 });
 
 skipButton.addEventListener("click", () => {
