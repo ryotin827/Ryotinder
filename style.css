@@ -30,9 +30,15 @@ h1 {
 }
 
 #profile-description {
-    margin-top: 15px;
+    margin-top: 10px;
     font-size: 1.2rem;
     color: #fff;
+}
+
+#profile-name {
+    font-size: 2rem; /* 名前と年齢の文字サイズを少し大きく */
+    font-weight: bold;
+    margin-bottom: 5px;
 }
 
 /* ボタン */
@@ -78,7 +84,7 @@ button:active {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 2.5rem; /* スマホでもはみ出さないサイズ */
+    font-size: 4rem; /* 倍の大きさに調整 */
     font-weight: 900;
     color: red;
     text-shadow: 0px 6px 15px rgba(0, 0, 0, 0.5);
@@ -93,7 +99,7 @@ button:active {
 /* スマホサイズのレスポンシブ調整 */
 @media screen and (max-width: 768px) {
     #match-message {
-        font-size: 2rem; /* 文字サイズを小さく調整 */
+        font-size: 3rem; /* スマホ用に少し縮小 */
     }
 
     button {
@@ -102,4 +108,3 @@ button:active {
         font-size: 3rem;
     }
 }
-
