@@ -129,8 +129,8 @@ likeButton.addEventListener("click", () => {
             matchMessage.style.transition = "transform 0.5s ease, opacity 0.5s ease";
             setTimeout(() => {
                 matchMessage.classList.remove("active"); // 大きい表示を解除
-                matchMessage.classList.add("fixed"); // 小さく写真中央上部に移動
-            }, 2000); // 2秒間表示させる
+                matchMessage.classList.add("fixed"); // 小さく写真中央に移動
+            }, 3000); // 3秒間表示させる
         });
     }
     likeButton.style.backgroundColor = "#ff1493";
