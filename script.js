@@ -126,11 +126,11 @@ likeButton.addEventListener("click", () => {
         matchMessage.style.transition = "none"; // トランジションを一時的に無効化
         matchMessage.classList.add("active");
         requestAnimationFrame(() => {
-            matchMessage.style.transition = "transform 0.2s ease, opacity 0.3s ease";
+            matchMessage.style.transition = "transform 0.5s ease, opacity 0.5s ease";
             setTimeout(() => {
                 matchMessage.classList.remove("active"); // 大きい表示を解除
                 matchMessage.classList.add("fixed"); // 小さく写真中央上部に移動
-            }, 500); // 短縮してすぐに次のアニメーションへ
+            }, 2000); // 2秒間表示させる
         });
     }
     likeButton.style.backgroundColor = "#ff1493";
