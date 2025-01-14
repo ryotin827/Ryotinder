@@ -91,9 +91,9 @@ button:active {
     background: rgba(255, 255, 255, 0.6);
     padding: 10px 20px;
     border-radius: 15px;
-    opacity: 1; /* 常に表示 */
+    opacity: 0; /* 初期状態で非表示 */
     z-index: 2;
-    animation: none; /* 消えない設定 */
+    transition: opacity 0.3s ease, transform 0.3s ease;
 }
 
 /* スマホサイズのレスポンシブ調整 */
