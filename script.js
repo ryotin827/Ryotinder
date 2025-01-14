@@ -5,10 +5,9 @@ const matchMessage = document.getElementById("match-message");
 const likeButton = document.getElementById("like-btn");
 const skipButton = document.getElementById("skip-btn");
 
-// 画像ファイル名とコメントのペアを作成
-const profiles = Array.from({ length: 93 }, (_, i) => ({
-    photo: `images/photo${i + 1}-min.JPEG`,
-    description: [
+// 画像とコメントの配列を作成
+const photos = Array.from({ length: 93 }, (_, i) => `images/photo${i + 1}-min.JPEG`);
+const descriptions = [
     "目があった人を石にしたいです！",
     "最近はお歯黒にハマってます！",
     "スヌーピー好きな人と仲良くしたいです！",
@@ -102,11 +101,9 @@ const profiles = Array.from({ length: 93 }, (_, i) => ({
     "流行りのマッシュヘアです！",
     "よろしくお願いします。お手柔らかに。",
     "真摯に野球と向き合ってます。"
-][i]
-}));
+];
 
-
-// 配列をランダムに並び替える関数
+// 配列をランダムにシャッフルする関数
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -114,46 +111,43 @@ function shuffleArray(array) {
     }
 }
 
-// ランダムに並び替える
-shuffleArray(profiles);
+// 画像とコメントをシャッフル
+shuffleArray(photos);
+shuffleArray(descriptions);
 
 // 現在の画像インデックス
 let currentIndex = 0;
 
 // プロフィールを更新する関数
 function updateProfile() {
-    if (profiles[currentIndex]) {
-        photoElement.src = profiles[currentIndex].photo;
-        descriptionElement.textContent = profiles[currentIndex].description;
-        matchMessage.style.opacity = 0; // 「マッチ」を非表示
-        matchMessage.style.transform = "translate(-50%, -50%) scale(0)"; // 初期状態に戻す
+    if (photos[currentIndex]) {
+        photoElement.src = photos[currentIndex];
+        descriptionElement.textContent = descriptions[currentIndex];
+        matchMessage.classList.remove("active", "fixed"); // 「マッチ」を非表示
     } else {
-        console.error(`画像が見つかりません: ${profiles[currentIndex]}`);
+        console.error(`画像が見つかりません: ${photos[currentIndex]}`);
     }
 }
 
 // ボタンのクリックイベント設定
 likeButton.addEventListener("click", () => {
-    const isMatch = Math.random() < 0.5; // 50%の確率でマッチ！
+    const isMatch = Math.random() < 0.5; // 50%の確率でマッチ
     if (isMatch) {
-        matchMessage.style.opacity = 1; // 「マッチ」を表示
-        matchMessage.style.transform = "translate(-50%, -50%) scale(1)";
+        matchMessage.classList.add("active");
         setTimeout(() => {
-            matchMessage.style.opacity = 0; // 数秒後に消える
-            matchMessage.style.transform = "translate(-50%, -50%) scale(0)";
-        }, 3000);
+            matchMessage.classList.add("fixed");
+        }, 1000); // 1秒後に「マッチ」を固定
     }
-    likeButton.style.backgroundColor = "#ff1493"; // ボタンをピンクに変更
-    setTimeout(() => {
-        likeButton.style.backgroundColor = "#ffe4e6"; // ピンクから元に戻す
-    }, 500);
-
-    currentIndex = (currentIndex + 1) % profiles.length;
+    likeButton.style.backgroundColor = "#ff1493"; // ボタンをピンクにする
+    currentIndex = (currentIndex + 1) % photos.length; // 次の写真に進む
     updateProfile();
+    setTimeout(() => {
+        likeButton.style.backgroundColor = "white"; // ボタンを元の色に戻す
+    }, 200);
 });
 
 skipButton.addEventListener("click", () => {
-    currentIndex = (currentIndex + 1) % profiles.length;
+    currentIndex = (currentIndex + 1) % photos.length;
     updateProfile();
 });
 
